@@ -81,16 +81,29 @@ class DiffusionBackend:
 
             device = resolve_device()
             dtype = torch.float16 if device == "cuda" else torch.float32
-            pipe = AutoPipelineForText2Image.from_pretrained(SETTINGS.diffusion_model, torch_dtype=dtype)
+            # `torch_dtype` alone only controls the in-memory dtype AFTER download; without
+            # `variant="fp16"` diffusers still downloads the full fp32 checkpoint files (~5GB for
+            # SD-Turbo) and casts them afterward. Ask for the smaller fp16 checkpoint FILES too when
+            # on GPU, and fall back to the default (fp32) files if the repo has no fp16 variant.
+            kwargs = {"torch_dtype": dtype}
+            if dtype == torch.float16:
+                kwargs["variant"] = "fp16"
+            try:
+                pipe = AutoPipelineForText2Image.from_pretrained(SETTINGS.diffusion_model, **kwargs)
+            except Exception:                                           # noqa: BLE001 - no fp16 variant on the hub
+                kwargs.pop("variant", None)
+                pipe = AutoPipelineForText2Image.from_pretrained(SETTINGS.diffusion_model, **kwargs)
             DiffusionBackend._pipe = pipe.to(device)
         return DiffusionBackend._pipe
 
     def build(self, question: Question, width: int, height: int) -> tuple[Image.Image, dict[str, BBox]]:
         pipe = self._get_pipeline()
-        prompt = question.background_prompt or (
-            f"a clear, simple, textbook-style illustration of {question.topic.replace('.', ' ')}, "
-            "plain background, no text, no words, no letters, no watermark"
-        )
+        # SD-Turbo has no CFG / negative-prompt training (guidance_scale=0.0), so every word here
+        # competes for the same, single pass of attention — a prompt stuffed with negations
+        # ("no text, no watermark...") dilutes the one thing that actually matters: WHAT to draw.
+        # Keep it short and entirely positive.
+        subject = question.background_prompt or f"{question.topic.replace('.', ' ')}"
+        prompt = f"{subject}, clean medical textbook illustration, simple flat colors, plain white background"
         image = pipe(prompt=prompt, num_inference_steps=SETTINGS.diffusion_steps,
                     guidance_scale=SETTINGS.diffusion_guidance_scale,
                     height=max(512, height - height % 8), width=max(512, width - width % 8)).images[0]

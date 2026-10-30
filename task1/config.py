@@ -52,7 +52,8 @@ class Settings:
     # generator/backends.py — "programmatic" (default, required by the spec) | "diffusion" | "gan"
     generation_backend: str = "programmatic"
     diffusion_model: str = "stabilityai/sd-turbo"   # 1-step distilled SD; fits+runs fast on 8GB at fp16
-    diffusion_steps: int = 1
+    diffusion_steps: int = 4                        # SD-Turbo: 1 step is often too weak for a specific
+                                                      # subject; 2-4 is still near-instant and far more reliable
     diffusion_guidance_scale: float = 0.0           # SD-Turbo is trained for guidance-free sampling
     gan_hub_model: str = "DCGAN"                    # facebookresearch/pytorch_GAN_zoo hub entry point
 

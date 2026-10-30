@@ -76,9 +76,20 @@ else:
     correct_label = st.selectbox("Correct answer", labels)
     rubric_text = st.text_area("Rubric (one point per line)", "Names the correct part\nGives a reason")
 
+    if q_type != "diagram_labeled":
+        st.warning("The AI-generated (diffusion) style below won't work well for this type — it can't draw "
+                  "an exact count of shapes or exact bar values. Use 🔵 Programmatic for shapes/charts.")
+    bg_prompt = st.text_input(
+        "Background image description (only used by 🎨 AI-generated below)", "",
+        placeholder="e.g. a realistic textbook illustration of the human heart, labeled cross-section",
+        help="diffusion can only depict ONE clear subject well — don't try to fit multiple distinct labeled "
+            "organs/parts into one prompt, it won't keep them separable. Leave empty to auto-build a prompt "
+            "from the topic field above.")
+
     question = Question(id=f"custom_{int(time.time())}", type=q_type, topic=q_topic, question_text=q_text,
                         targets=targets, correct_label=correct_label,
-                        rubric=[r for r in rubric_text.splitlines() if r.strip()])
+                        rubric=[r for r in rubric_text.splitlines() if r.strip()],
+                        background_prompt=bg_prompt or None)
 
 st.divider()
 st.subheader("Image style")
