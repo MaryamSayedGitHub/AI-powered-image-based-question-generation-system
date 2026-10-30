@@ -1,0 +1,52 @@
+{
+  "question_id": "geo_shapes_001",
+  "question_type": "shape_question",
+  "topic": "geometry.shapes",
+  "image_path": "output\\geo_shapes_001.png",
+  "generated_at": "2026-10-30T16:20:39.342163+00:00",
+  "image": {
+    "resolution": {
+      "width": 900,
+      "height": 700
+    },
+    "blur_score": 582.1458,
+    "contrast_score": 81.03665227571054
+  },
+  "ocr": {
+    "engine": "easyocr",
+    "extracted_text": "Which shape has exactly three sides?",
+    "confidence": 0.928,
+    "similarity_to_expected": 1.0
+  },
+  "embedding": {
+    "question_similarity": 0.3728,
+    "topic_similarity": 0.2693,
+    "decoy_similarity": 0.1496,
+    "margin_over_decoy": 0.2232,
+    "passed": true
+  },
+  "regions": [
+    {
+      "label": "A",
+      "distinctiveness": 0.1696,
+      "passed": true
+    },
+    {
+      "label": "B",
+      "distinctiveness": 0.2302,
+      "passed": true
+    },
+    {
+      "label": "C",
+      "distinctiveness": 0.2121,
+      "passed": true
+    }
+  ],
+  "status": "pass",
+  "checks": {
+    "quality_passed": true,
+    "ocr_passed": true,
+    "embedding_passed": true,
+    "regions_passed": true
+  }
+}

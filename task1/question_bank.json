@@ -1,0 +1,52 @@
+[
+  {
+    "id": "bio_cell_001",
+    "type": "diagram_labeled",
+    "topic": "biology.cell",
+    "question_text": "Which labeled part is the nucleus?",
+    "correct_label": "A",
+    "rubric": [
+      "Names the correct part (A)",
+      "Calls it the nucleus",
+      "Gives a reason (controls the cell / holds DNA)"
+    ],
+    "targets": [
+      {"label": "A", "name": "Nucleus", "description": "The organelle that controls the cell and stores its DNA", "category": "organelle"},
+      {"label": "B", "name": "Mitochondrion", "description": "The organelle that produces the cell's energy (ATP)", "category": "organelle"},
+      {"label": "C", "name": "Vacuole", "description": "The organelle that stores water, nutrients and waste", "category": "organelle"}
+    ]
+  },
+  {
+    "id": "geo_shapes_001",
+    "type": "shape_question",
+    "topic": "geometry.shapes",
+    "question_text": "Which shape has exactly three sides?",
+    "correct_label": "B",
+    "rubric": [
+      "Names the correct shape (B)",
+      "Calls it a triangle",
+      "States the number of sides (3)"
+    ],
+    "targets": [
+      {"label": "A", "name": "Square", "description": "A quadrilateral with four equal sides", "category": "shape"},
+      {"label": "B", "name": "Triangle", "description": "A polygon with exactly three sides", "category": "shape"},
+      {"label": "C", "name": "Pentagon", "description": "A polygon with exactly five sides", "category": "shape"}
+    ]
+  },
+  {
+    "id": "chart_bar_001",
+    "type": "chart_question",
+    "topic": "math.statistics",
+    "question_text": "Which bar shows the highest value?",
+    "correct_label": "C",
+    "rubric": [
+      "Names the correct bar (C)",
+      "Reads its value correctly from the chart"
+    ],
+    "targets": [
+      {"label": "A", "name": "Bar A (12)", "description": "First bar, value 12", "category": "chart_element"},
+      {"label": "B", "name": "Bar B (18)", "description": "Second bar, value 18", "category": "chart_element"},
+      {"label": "C", "name": "Bar C (27)", "description": "Third bar, value 27 — the tallest", "category": "chart_element"}
+    ]
+  }
+]

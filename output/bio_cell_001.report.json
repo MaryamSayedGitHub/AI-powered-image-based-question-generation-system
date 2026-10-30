@@ -1,0 +1,52 @@
+{
+  "question_id": "bio_cell_001",
+  "question_type": "diagram_labeled",
+  "topic": "biology.cell",
+  "image_path": "output\\bio_cell_001.png",
+  "generated_at": "2026-10-30T16:20:39.342163+00:00",
+  "image": {
+    "resolution": {
+      "width": 900,
+      "height": 700
+    },
+    "blur_score": 722.6470761904762,
+    "contrast_score": 81.45211941013619
+  },
+  "ocr": {
+    "engine": "easyocr",
+    "extracted_text": "Which labeled part is the nucleus?",
+    "confidence": 0.979,
+    "similarity_to_expected": 1.0
+  },
+  "embedding": {
+    "question_similarity": 0.3725,
+    "topic_similarity": 0.23,
+    "decoy_similarity": 0.1405,
+    "margin_over_decoy": 0.232,
+    "passed": true
+  },
+  "regions": [
+    {
+      "label": "A",
+      "distinctiveness": 0.2195,
+      "passed": true
+    },
+    {
+      "label": "B",
+      "distinctiveness": 0.2545,
+      "passed": true
+    },
+    {
+      "label": "C",
+      "distinctiveness": 0.2687,
+      "passed": true
+    }
+  ],
+  "status": "pass",
+  "checks": {
+    "quality_passed": true,
+    "ocr_passed": true,
+    "embedding_passed": true,
+    "regions_passed": true
+  }
+}

@@ -1,0 +1,35 @@
+[
+  {
+    "target_name": "Square",
+    "target_description": "A quadrilateral with four equal sides",
+    "target_category": "shape",
+    "expected_visual_region": {
+      "x": 223,
+      "y": 240,
+      "w": 128,
+      "h": 81
+    }
+  },
+  {
+    "target_name": "Triangle",
+    "target_description": "A polygon with exactly three sides",
+    "target_category": "shape",
+    "expected_visual_region": {
+      "x": 377,
+      "y": 219,
+      "w": 169,
+      "h": 93
+    }
+  },
+  {
+    "target_name": "Pentagon",
+    "target_description": "A polygon with exactly five sides",
+    "target_category": "shape",
+    "expected_visual_region": {
+      "x": 549,
+      "y": 224,
+      "w": 172,
+      "h": 104
+    }
+  }
+]

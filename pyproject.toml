@@ -1,0 +1,42 @@
+[project]
+name = "generate-image-based-q"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Maryam Sayed", email = "maryamsayed207@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "accelerate>=0.27",
+    "diffusers>=0.27",
+    "easyocr>=1.7",
+    "matplotlib>=3.8",
+    "numpy>=1.26",
+    "opencv-python>=4.9",
+    "pillow>=10.0",
+    "pytesseract>=0.3.10",
+    "pytest>=9.2.0",
+    "safetensors>=0.4",
+    "sentence-transformers>=2.5",
+    "streamlit>=1.66.1",
+    "torch>=2.2",
+    "torchaudio>=2.11.0",
+    "torchvision>=0.26.0",
+]
+
+[project.scripts]
+generate-image-based-q = "generate_image_based_q:main"
+
+[build-system]
+requires = ["uv_build>=0.12.5,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
+torchvision = { index = "pytorch-cu128" }
+torchaudio = { index = "pytorch-cu128" }
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"

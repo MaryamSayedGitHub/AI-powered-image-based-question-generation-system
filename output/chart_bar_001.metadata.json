@@ -1,0 +1,35 @@
+[
+  {
+    "target_name": "Bar A (12)",
+    "target_description": "First bar, value 12",
+    "target_category": "chart_element",
+    "expected_visual_region": {
+      "x": 144,
+      "y": 354,
+      "w": 181,
+      "h": 157
+    }
+  },
+  {
+    "target_name": "Bar B (18)",
+    "target_description": "Second bar, value 18",
+    "target_category": "chart_element",
+    "expected_visual_region": {
+      "x": 371,
+      "y": 275,
+      "w": 181,
+      "h": 236
+    }
+  },
+  {
+    "target_name": "Bar C (27)",
+    "target_description": "Third bar, value 27 — the tallest",
+    "target_category": "chart_element",
+    "expected_visual_region": {
+      "x": 597,
+      "y": 157,
+      "w": 181,
+      "h": 354
+    }
+  }
+]

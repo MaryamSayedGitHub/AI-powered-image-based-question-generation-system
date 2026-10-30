@@ -1,0 +1,15 @@
+streamlit>=1.35               # simple local deployment (app.py) to try the pipeline interactively
+opencv-python>=4.9
+pillow>=10.0
+matplotlib>=3.8
+numpy>=1.26
+pytesseract>=0.3.10          # fallback OCR; needs the system `tesseract-ocr` binary too
+easyocr>=1.7                 # primary OCR (optional: pipeline falls back to pytesseract if absent)
+sentence-transformers>=2.5   # local CLIP (clip-ViT-B-32) for the image-text embedding check (optional)
+
+# optional generation backends (generator/backends.py) — only needed if you set
+# config.SETTINGS.generation_backend to "diffusion" or "gan"; the default "programmatic" needs none of these
+torch>=2.2                   # also pulled in by easyocr / sentence-transformers if you installed those
+diffusers>=0.27               # DiffusionBackend (stabilityai/sd-turbo by default)
+accelerate>=0.27              # diffusers device/memory management
+safetensors>=0.4              # diffusers checkpoint format

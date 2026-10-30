@@ -1,0 +1,35 @@
+[
+  {
+    "target_name": "Nucleus",
+    "target_description": "The organelle that controls the cell and stores its DNA",
+    "target_category": "organelle",
+    "expected_visual_region": {
+      "x": 371,
+      "y": 142,
+      "w": 181,
+      "h": 102
+    }
+  },
+  {
+    "target_name": "Mitochondrion",
+    "target_description": "The organelle that produces the cell's energy (ATP)",
+    "target_category": "organelle",
+    "expected_visual_region": {
+      "x": 552,
+      "y": 305,
+      "w": 133,
+      "h": 66
+    }
+  },
+  {
+    "target_name": "Vacuole",
+    "target_description": "The organelle that stores water, nutrients and waste",
+    "target_category": "organelle",
+    "expected_visual_region": {
+      "x": 238,
+      "y": 305,
+      "w": 133,
+      "h": 66
+    }
+  }
+]

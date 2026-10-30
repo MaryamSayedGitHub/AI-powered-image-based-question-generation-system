@@ -1,0 +1,52 @@
+{
+  "question_id": "chart_bar_001",
+  "question_type": "chart_question",
+  "topic": "math.statistics",
+  "image_path": "output\\chart_bar_001.png",
+  "generated_at": "2026-10-30T16:20:39.344169+00:00",
+  "image": {
+    "resolution": {
+      "width": 900,
+      "height": 700
+    },
+    "blur_score": 1063.889742857143,
+    "contrast_score": 81.23891711151465
+  },
+  "ocr": {
+    "engine": "easyocr",
+    "extracted_text": "Which bar shows the highest value?",
+    "confidence": 0.906,
+    "similarity_to_expected": 1.0
+  },
+  "embedding": {
+    "question_similarity": 0.341,
+    "topic_similarity": 0.2559,
+    "decoy_similarity": 0.1322,
+    "margin_over_decoy": 0.2088,
+    "passed": true
+  },
+  "regions": [
+    {
+      "label": "A",
+      "distinctiveness": 0.1099,
+      "passed": true
+    },
+    {
+      "label": "B",
+      "distinctiveness": 0.0964,
+      "passed": true
+    },
+    {
+      "label": "C",
+      "distinctiveness": 0.0867,
+      "passed": true
+    }
+  ],
+  "status": "pass",
+  "checks": {
+    "quality_passed": true,
+    "ocr_passed": true,
+    "embedding_passed": true,
+    "regions_passed": true
+  }
+}
