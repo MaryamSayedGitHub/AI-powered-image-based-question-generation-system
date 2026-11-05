@@ -1,0 +1,42 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # tesseract-ocr is the system binary pytesseract needs (the OCR fallback used in CI, since
+      # the optional easyocr/sentence-transformers models are skipped here on purpose — see below).
+      - name: Install system OCR binary
+        run: sudo apt-get update && sudo apt-get install -y tesseract-ocr
+
+      # Only the CORE deps the pipeline needs to run: no easyocr / sentence-transformers / torch /
+      # diffusers here on purpose — they're optional (validator/pipeline.py degrades those checks to
+      # "skipped" when absent, never a failure), and installing them would make every CI run slow and
+      # flaky for a check that's already exercised by the skip-path tests. Install those locally with
+      # the full requirements.txt to test the real OCR/embedding backends.
+      - name: Install core dependencies
+        run: pip install opencv-python-headless pillow matplotlib numpy pytesseract pytest
+
+      - name: Run test suite
+        run: python -m pytest tests/ -q
+
+      - name: Run the CLI end to end (smoke test)
+        run: python -m task1.cli --out ./ci_output
+
+      - name: Upload generated output on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-output
+          path: ci_output/

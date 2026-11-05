@@ -9,8 +9,19 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
 from task1.config import SETTINGS
+from task1.fonts import resolve_font_path
 from task1.generator.backends import get_backend
 from task1.schemas import BBox, GeneratedItem, Question
+
+
+def _load_font(size: int) -> ImageFont.ImageFont | ImageFont.FreeTypeFont:
+    """A real TTF at the requested size if one can be found at all (see fonts.py); PIL's built-in
+    bitmap font — fixed size, no bold, but always available — only if truly nothing else is found,
+    so the pipeline still runs end to end on a bare-bones machine instead of crashing on import."""
+    path = resolve_font_path(SETTINGS.font_path)
+    if path:
+        return ImageFont.truetype(path, size)
+    return ImageFont.load_default()
 
 
 def _wrap_text(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.FreeTypeFont, max_width: int) -> list[str]:
@@ -48,12 +59,12 @@ def render_question_image(question: Question, out_path: Path | str,
     draw.rectangle([0, diagram_h, width, height], fill="#1b2a4a")
 
     size = 30
-    font = ImageFont.truetype(SETTINGS.font_path, size)
+    font = _load_font(size)
     max_w = width - 48
     lines = _wrap_text(draw, question.question_text, font, max_w)
     while len(lines) > 2 and size > 14:
         size -= 2
-        font = ImageFont.truetype(SETTINGS.font_path, size)
+        font = _load_font(size)
         lines = _wrap_text(draw, question.question_text, font, max_w)
     line_h = draw.textbbox((0, 0), "A", font=font)[3] + 6
     total_h = line_h * len(lines)

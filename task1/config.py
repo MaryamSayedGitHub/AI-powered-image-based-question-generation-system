@@ -47,7 +47,9 @@ class Settings:
     output_dir: Path = DEFAULT_OUTPUT_DIR
     image_width: int = 900
     image_height: int = 700
-    font_path: str = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+    # None (default) = auto-detect a real bold TTF portably (task1/fonts.py:resolve_font_path) —
+    # set an explicit path here only to pin a specific font on purpose.
+    font_path: str | None = None
 
     # generator/backends.py — "programmatic" (default, required by the spec) | "diffusion" | "gan"
     generation_backend: str = "programmatic"
